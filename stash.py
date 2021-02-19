@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 LOGGER_PREFIX: str = 'Brittsa (service-stash): '
 
 
-def connect_firestore_with_key(collection_name: str, firestore_key: str):
+def connect_firestore_with_key(collection_name: str, firestore_key: str or dict):
     try:
         logger.debug(
             f"{LOGGER_PREFIX}Establishing connection to Firebase's Firestore")
