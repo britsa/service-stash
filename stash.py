@@ -26,76 +26,82 @@ def connect_firestore_with_key(collection_name: str, firestore_key: str):
         return document_reference
 
 class HttpStatusCode(Enum):
+    def status_code(self) -> int:
+        return self.value[0]
+
+    def status_message(self) -> str:
+        return self.value[1]
 
     # INFORMATIONAL RESPONSES (100–199)
-    CONTINUE = 100
-    SWITCHING_PROTOCOL = 101
-    PROCESSING = 102
-    EARLY_HINTS = 103
+    CONTINUE =(100, 'Information Response - Continue')
+    SWITCHING_PROTOCOL =(101, 'Information Response -Switching protocol')
+    PROCESSING = (102, 'Information Response - Processing')
+    EARLY_HINTS = (103, 'Information Response - Early hints')
 
     # SUCCESSFUL RESPONSES (200–299)
-    OK = 200
-    CREATED = 201
-    ACCEPTED = 202
-    NON_AUTHORITATIVE_INFORMATION = 203
-    NO_CONTENT = 204
-    RESET_CONTENT = 205
-    PARTIAL_CONTENT = 206
-    MULTI_STATUS = 207
-    ALREADY_REPORTED = 208
-    IM_USED = 226
+    OK = (200,'Successful Responce - Ok')
+    CREATED = (201,'Successful Responce - Created')
+    ACCEPTED = (202,'Successful Responce - Accepted')
+    NON_AUTHORITATIVE_INFORMATION = (203,'Successful Responce - Non authoritative information')
+    NO_CONTENT = (204,'Successful Responce - No content')
+    RESET_CONTENT = (205,'Successful Responce - Reset content')
+    PARTIAL_CONTENT = (206,'Successful Responce - Partial content')
+    MULTI_STATUS = (207,'Successful Responce - Multi status')
+    ALREADY_REPORTED = (208,'Successful Responce - Already reported')
+    IM_USED = (226,'Successful Responce - Im used')
 
     # REDIRECTS (300–399)
-    MULTIPLE_CHOICE = 300
-    MOVED_PERMANENTLY = 301
-    FOUND = 302
-    SEE_OTHER = 303
-    NOT_MODIFIED = 304
-    USE_PROXY = 305
-    UNUSED = 306
-    TEMPORARY_REDIRECT = 307
-    PERMANENT_REDIRECT = 308
+    MULTIPLE_CHOICE = (300,'Redirects -Multiple choice')
+    MOVED_PERMANENTLY = (301,'Redirects -Moved permanently')
+    FOUND = (302,'Redirects -Found')
+    SEE_OTHER = (303,'Redirects -See other')
+    NOT_MODIFIED = (304,'Redirects -Not modified')
+    USE_PROXY = (305,'Redirects -Use proxy')
+    UNUSED = (306,'Redirects -Unused')
+    TEMPORARY_REDIRECT = (307,'Redirects -Temporary redirect')
+    PERMANENT_REDIRECT = (308,'Redirects -Permanent redirect')
 
     # CLIENT ERRORS (400–499)
-    BAD_REQUEST = 400
-    UNAUTHORIZED = 401
-    PAYMENT_REQUIRED = 402
-    FORBIDDEN = 403
-    NOT_FOUND = 404
-    METHOD_NOT_ALLOWED = 405
-    NOT_ACCEPTABLE = 406
-    PROXY_AUTHENTICATION_REQUIRED = 407
-    REQUEST_TIMEOUT = 408
-    CONFLICT = 409
-    GONE = 410
-    LENGTH_REQUIRED = 411
-    PRECONDITION_FAILED = 412
-    PAYLOAD_TOO_LARGE = 413
-    URI_TOO_LONG = 414
-    UNSUPPORTED_MEDIA_TYPE = 415
-    REQUESTED_RANGE_NOT_SATISFIABLE = 416
-    EXPECTATION_FAILED = 417
-    IM_A_TEAPOT = 418
-    MISDIRECTED_REQUEST = 421
-    UNPROCESSABLE_ENTITY = 422
-    LOCKED = 423
-    FAILED_DEPENDENCY = 424
-    TOO_EARLY = 425
-    UPGRADE_REQUIRED = 426
-    PRECONDITION_REQUIRED = 428
-    TOO_MANY_REQUESTS = 429
-    REQUEST_HEADER_FIELDS_TOO_LARGE = 431
-    UNAVAILABLE_FOR_LEGAL_REASONS = 451
+    BAD_REQUEST = (400,'Client Error -Bad request')
+    UNAUTHORIZED = (401,'Client Error -Unauthorized')
+    PAYMENT_REQUIRED = (402,'Client Error -Payment required')
+    FORBIDDEN = (403,'Client Error -Forbidden')
+    NOT_FOUND = (404,'Client Error -Not found')
+    METHOD_NOT_ALLOWED = (405,'Client Error -Method not allowed')
+    NOT_ACCEPTABLE = (406,'Client Error -Not acceptable')
+    PROXY_AUTHENTICATION_REQUIRED = (407,'Client Error -Proxy authentication required')
+    REQUEST_TIMEOUT = (408,'Client Error -Request timeout')
+    CONFLICT = (409,'Client Error -Conflict')
+    GONE = (410,'Client Error -Gone')
+    LENGTH_REQUIRED = (411,'Client Error -Length required')
+    PRECONDITION_FAILED = (412,'Client Error -Precondition failed')
+    PAYLOAD_TOO_LARGE = (413,'Client Error -Payload too large')
+    URI_TOO_LONG = (414,'Client Error -URI too long')
+    UNSUPPORTED_MEDIA_TYPE = (415,'Client Error -Unsupported Media type')
+    REQUESTED_RANGE_NOT_SATISFIABLE = (416,'Client Error -Requested range not satisfiable')
+    EXPECTATION_FAILED = (417,'Client Error -Expectation failed')
+    IM_A_TEAPOT = (418,'Client Error -Im a teapot')
+    MISDIRECTED_REQUEST = (421,'Client Error -Misdirected request')
+    UNPROCESSABLE_ENTITY = (422,'Client Error -Unprocessable entity')
+    LOCKED = (423,'Client Error -Locked')
+    FAILED_DEPENDENCY = (424,'Client Error -Failed dependency')
+    TOO_EARLY = (425,'Client Error -Too early')
+    UPGRADE_REQUIRED = (426,'Client Error -Upgrade required')
+    PRECONDITION_REQUIRED = (428,'Client Error -Precondition required')
+    TOO_MANY_REQUESTS = (429,'Client Error -Too many requests')
+    REQUEST_HEADER_FIELDS_TOO_LARGE = (431,'Client Error -Request header fields too large')
+    UNAVAILABLE_FOR_LEGAL_REASONS = (451,'Client Error -Unavailable for legal reasons')
 
     # SERVER ERRORS (500–599)
-    INTERNAL_SERVER_ERROR = 500
-    NOT_IMPLEMENTED = 501
-    BAD_GATEWAY = 502
-    SERVICE_UNAVAILABLE = 503
-    GATEWAY_TIMEOUT = 504
-    HTTP_VERSION_NOT_SUPPORTED = 505
-    VARIANT_ALSO_NEGOTIATES = 506
-    INSUFFICIENT_STORAGE = 507
-    LOOP_DETECTED = 508
-    NOT_EXTENDED = 510
-    NETWORK_AUTHENTICATION_REQUIRED = 511
+    INTERNAL_SERVER_ERROR = (500,'Server Error -Internal server error')
+    NOT_IMPLEMENTED = (501,'Server Error -Not implemented')
+    BAD_GATEWAY = (502,'Server Error -Bad gateway')
+    SERVICE_UNAVAILABLE = (503,'Server Error -Service unavailable')
+    GATEWAY_TIMEOUT = (504,'Server Error -Gateway timeout')
+    HTTP_VERSION_NOT_SUPPORTED = (505,'Server Error -Http version not supported')
+    VARIANT_ALSO_NEGOTIATES = (506,'Server Error -Variant also negotiates')
+    INSUFFICIENT_STORAGE = (507,'Server Error -Insufficient storage')
+    LOOP_DETECTED = (508,'Server Error -Loop detected')
+    NOT_EXTENDED = (510,'Server Error -Not extended')
+    NETWORK_AUTHENTICATION_REQUIRED = (511,'Server Error -Network authentication required')
+
