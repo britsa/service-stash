@@ -105,4 +105,24 @@ class HttpStatusCode(Enum):
 
     def status_message(self) -> str:
         return self.value[1]
+# AppResponseCodes
+class AppResponseCodes(Enum):
+    ERROR_OCCURRED = (1000, 'Some error occurred in the code')
+    REQUIRED_PARAMETER_NOT_FOUND = (1001, 'Required parameter not found in the request')
+    UNAUTHORIZED_REQUEST = (1002, 'Unauthorized request found')
+
+    # App Utils error codes
+    ENVIRONMENT_NOT_FOUND = (1010, 'Required environment not found.')
+    VERSION_NOT_AVAILABLE = (1011, 'Requested version is not available.')
+
+    def log(self) -> str:
+        log_format: str = '{0} - {1}'
+        return log_format.format(self.error_code(), self.error_message())
+
+    def error_code(self) -> int:
+        return self.value[0]
+
+    def error_message(self) -> str:
+        return self.value[1]
+
 
