@@ -44,3 +44,10 @@ while the last two digits do not have any classifying or categorization role.
        This class of status code is intended for situations in which the error seems to have been caused by the client.
 > #### 5xx server error – the server failed to fulfil an apparently valid request.
        Response status codes beginning with the digit "5" indicate cases in which the server is aware that it has encountered an error or is otherwise incapable of performing the request.
+       
+-----
+## App_Exception code description
+>>  The App_Exception is a class which will inherit the properties of Class Exception.
+>>  The method init  will checks  your program with the conditions and check whether it contains error or not.
+>>  If the condition satisfies then the method "response" will be called which will give the required exception(error description). 
+>>  The function "get_env" will checks the condition of the environment variables of your program and tells if there is any problem in connecting with your program(environment variables path).
