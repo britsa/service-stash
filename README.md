@@ -47,7 +47,7 @@ while the last two digits do not have any classifying or categorization role.
        
 -----
 ## App_Exception code description
->>#  The App_Exception is a class which will inherit the properties of Class Exception.
+>>  The App_Exception is a class which will inherit the properties of Class Exception.
 >>  The method init  will checks  your program with the conditions and check whether it contains error or not.
->>#  If the condition satisfies then the method "response" will be called which will give the required exception(error description). 
->># The function "get_env" will checks the condition of the environment variables of your program and tells if there is any problem in connecting with your program(environment variables path).
+>>  If the condition satisfies then the method "response" will be called which will give the required exception(error description). 
+>> The function "get_env" will checks the condition of the environment variables of your program and tells if there is any problem in connecting with your program(environment variables path).
