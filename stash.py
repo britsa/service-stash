@@ -33,10 +33,6 @@ def connect_firestore_with_key(collection_name: str, firestore_key: str or dict)
         return document_reference
 
 
-
-
-
-
 class HttpStatusCode(Enum):
 
     # INFORMATIONAL RESPONSES (100–199)
@@ -137,6 +133,7 @@ class AppResponseCodes(Enum):
     def error_message(self) -> str:
         return self.value[1]
 
+
 class App_Exception(Exception):
     def _init_(self, app_response_code: AppResponseCodes, message: str or None = None,
                    validation_error: bool = False) -> None:
@@ -151,9 +148,9 @@ class App_Exception(Exception):
             logger.error(f'Exception raised on {self.__app_response_statement}')
 
             if validation_error:
-                self.__http_code: HTTPResponseCodes = HTTPResponseCodes.INVALID_INPUT_PARAMETERS
+                self.__http_code: HttpStatusCode = HttpStatusCode.INVALID_INPUT_PARAMETERS
             else:
-                self.__http_code: HTTPResponseCodes = HTTPResponseCodes.INTERNAL_SERVER_ERROR
+                self.__http_code: HttpStatusCode = HttpStatusCode.INTERNAL_SERVER_ERROR
 
     def response(self) -> Response:
             logger.error(
@@ -162,6 +159,7 @@ class App_Exception(Exception):
                 'error_description': self.__http_code.status_message(),
             }
             return Response(error_response_object, status=self.__http_code.status_code())
+
 
 def get_env(key: str) -> str or App_Exception:
         response_value: str or None = os.environ.get(key)
