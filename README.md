@@ -22,14 +22,6 @@ from stash_service import connect_firestore_with_key
 db_reference = connect_firestore_with_key(collection_name, firestore_secret_key)
 ```
 
----
-
-MIT Licensed - 2021 : Britsa - britsa.tech@gmail.com
-
-Contributors:
-Maria Irudaya Regilan J
-
----
 ## Response codes description
 ##### HTTP response status codes indicate whether a specific HTTP request has been successfully completed.
 All HTTP response status codes are separated into five classes or categories. The first digit of the status code defines the class of response,
@@ -45,10 +37,18 @@ while the last two digits do not have any classifying or categorization role.
 > #### 5xx server error – the server failed to fulfil an apparently valid request.
        Response status codes beginning with the digit "5" indicate cases in which the server is aware that it has encountered an error or is otherwise incapable of performing the request.
 
---------
-
 ## App_Exception code description
 ######  The App_Exception is a class which will inherit the properties of Class Exception.
 ######  The method __init__  will check your program with the conditions and check whether it contains error or not.
 ###### If the condition satisfies then the method "response" will be called which will give the required exception(error description). 
 ###### The function "get_env" will check the condition of the environment variables of your program and tells if there is any problem in connecting with your program(environment variables path).
+
+---
+
+MIT Licensed - 2021 : Britsa - britsa.tech@gmail.com
+
+Contributors:
+Maria Irudaya Regilan J
+Venkateshwar S
+
+---
