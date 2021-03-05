@@ -49,6 +49,6 @@ If the condition satisfies then the method "response" will be called which will 
 MIT Licensed - 2021 : Britsa - britsa.tech@gmail.com
 
 Contributors:
-Maria Irudaya Regilan J, Venkateshwar S, D Vidhyalakshmi
+Maria Irudaya Regilan J, Pavithra K, Venkateshwar S, D Vidhyalakshmi
 
 ---
