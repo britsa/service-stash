@@ -27,6 +27,6 @@ db_reference = connect_firestore_with_key(collection_name, firestore_secret_key)
 MIT Licensed - 2021 : Britsa - britsa.tech@gmail.com
 
 Contributors:
-Maria Irudaya Regilan J
+Maria Irudaya Regilan J, Venkateshwar S, D Vidhyalakshmi
 
 ---

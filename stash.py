@@ -7,7 +7,7 @@ import ast
 
 logger = logging.getLogger(__name__)
 
-LOGGER_PREFIX: str = 'Brittsa (service-stash): '
+LOGGER_PREFIX: str = 'Britsa (service-stash): '
 
 
 def connect_firestore_with_key(collection_name: str, firestore_key: str or dict):
