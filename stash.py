@@ -3,15 +3,12 @@
 
 from firebase_admin import credentials, firestore, initialize_app
 from enum import Enum
-import logging
 import ast
 
 from rest_framework.response import Response
 import os
 import logging
 from dotenv import load_dotenv
-logger = logging.getLogger(__name__)
-
 
 logger = logging.getLogger(__name__)
 
@@ -176,5 +173,30 @@ def get_env(key: str) -> str or App_Exception:
                 return response_value
         raise App_Exception(AppResponseCodes.ENVIRONMENT_NOT_FOUND, message=key, validation_error=False)
 
+class Logger(object):
+    def __init__(self, LOG_TAG: str) -> None:
+        self.__tag = LOG_TAG
 
+    def debug(self, new_tag: str, message: str) -> None:
+        logging.getLogger(new_tag).debug(message)
 
+    def debug(self, message: str) -> None:
+        self.debug(new_tag=self.__tag, message=message)
+
+    def info(self, new_tag: str, message: str) -> None:
+        logging.getLogger(new_tag).info(message)
+
+    def info(self, message: str) -> None:
+        self.info(new_tag=self.__tag, message=message)
+
+    def warn(self, new_tag: str, message: str) -> None:
+        logging.getLogger(new_tag).warning(message)
+
+    def warn(self, message: str) -> None:
+        self.warn(new_tag=self.__tag, message=message)
+
+    def error(self, new_tag: str, message: str) -> None:
+        logging.getLogger(new_tag).error(message)
+
+    def error(self, message: str) -> None:
+        self.error(new_tag=self.__tag, message=message)
