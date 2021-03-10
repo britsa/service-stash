@@ -124,17 +124,17 @@ class AppResponseCodes(Enum):
         return self.value[1]
 
 
-class App_Exception(Exception):
-    def _init_(self, app_response_code: AppResponseCodes, message: str or None = None,
+class AppException(Exception):
+    def _init_(self, error_code: int, message: str or None = None,
                validation_error: bool = False) -> None:
-        super(App_Exception, self)._init_(app_response_code.error_message())
+        super(AppException, self)._init_(message)
 
         if not message:
-            message = ''
+            message = f'{message} '
         else:
-            message = f' [msg= {message}]'
+            message = ''
 
-        self.__app_response_statement: str = f'{app_response_code.error_message()}{message} ({app_response_code.error_code()})'
+        self.__app_response_statement: str = f'{message}({error_code})'
         logger.error(f'Exception raised on {self.__app_response_statement}')
 
         if validation_error:
