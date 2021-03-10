@@ -125,6 +125,23 @@ class AppResponseCodes(Enum):
 
 
 class AppException(Exception):
+    def _init_(self, app_response_code: AppResponseCodes, message: str or None = None,
+               validation_error: bool = False) -> None:
+        super(AppException, self)._init_(message)
+
+        if not message:
+            message = f'[msg = {message}]'
+        else:
+            message = ''
+
+        self.__app_response_statement: str = f'{app_response_code.error_message()}{message} ({app_response_code.error_code()})'
+        logger.error(f'Exception raised on {self.__app_response_statement}')
+
+        if validation_error:
+            self.__http_code: HttpStatusCode = HttpStatusCode.INVALID_INPUT_PARAMETERS
+        else:
+            self.__http_code: HttpStatusCode = HttpStatusCode.INTERNAL_SERVER_ERROR
+
     def _init_(self, error_code: int, message: str or None = None,
                validation_error: bool = False) -> None:
         super(AppException, self)._init_(message)
@@ -151,7 +168,7 @@ class AppException(Exception):
         return Response(error_response_object, status=self.__http_code.status_code())
 
 
-def get_env(key: str) -> str or App_Exception:
+def get_env(key: str) -> str or AppException:
     response_value: str or None = os.environ.get(key)
     if response_value:
         response_value = str(response_value)
@@ -164,7 +181,7 @@ def get_env(key: str) -> str or App_Exception:
         if response_value:
             response_value = str(response_value)
             return response_value
-    raise App_Exception(AppResponseCodes.ENVIRONMENT_NOT_FOUND, message=key, validation_error=False)
+    raise AppException(AppResponseCodes.ENVIRONMENT_NOT_FOUND, message=key, validation_error=False)
 
 
 class Logger(object):
