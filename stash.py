@@ -155,9 +155,12 @@ class AppException(Exception):
         logger.error(f'Exception raised on {self.__app_response_statement}')
 
         if validation_error:
-            self.__http_code: HttpStatusCode = HttpStatusCode.INVALID_INPUT_PARAMETERS
+            self.__http_code: HttpStatusCode = HttpStatusCode.PRECONDITION_FAILED
         else:
             self.__http_code: HttpStatusCode = HttpStatusCode.INTERNAL_SERVER_ERROR
+
+    def validation_error(self):
+        return self.__http_code == HttpStatusCode.PRECONDITION_FAILED
 
     def response(self) -> Response:
         logger.error(
